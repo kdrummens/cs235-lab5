@@ -17,7 +17,9 @@ public:
         arrayCounter = 0;
         tableSize = 0;
     }
-    ~QS() {}
+    ~QS() {
+        delete [] table;
+    }
 
     /*
     * sortAll()

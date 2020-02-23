@@ -26,8 +26,8 @@ int main() {
 	QS* qsptr = NULL;//the QS object
 
 	for (int i = 0; i < NUM_FILES; i++) {
-		ifs.open("/Users/kylerummens/Documents/school/CS 235/Lab5/Lab5/" + fileArray[i]); // open the file to read from
-		ofs.open("/Users/kylerummens/Documents/school/CS 235/Lab5/Lab5/out_" + fileArray[i]); // open the file to write to
+		ifs.open(fileArray[i]); // open the file to read from
+		ofs.open("out_" + fileArray[i]); // open the file to write to
 		qsptr = new QS();
 
 		if (!ifs.is_open()) { // if the file did not open, there was no such file

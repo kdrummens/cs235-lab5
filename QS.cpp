@@ -52,7 +52,6 @@ void QS::sortAll() {
 *        the index of the pivot (middle index); -1 if provided with invalid input
 */
 int QS::medianOfThree(int left, int right) {
-    cout << "LEFT: " << left << " RIGHT: " << right << endl;
     if(arrayCounter == 0 || left < 0 || right > arrayCounter - 1 || right < left || right == 0) {
         return -1;
     }
@@ -114,77 +113,17 @@ int QS::partition(int left, int right, int pivotIndex) {
            return -1;
     }
     
-    
-    
-    /*
-    int pivot = table[pivotIndex];    // pivot
-    int i = (left - 1);  // Index of smaller element
-    
-    for(int j = left; j < right; j++) {
-          // If current element is smaller than or
-          // equal to pivot
-          if (table[j] <= pivot)
-          {
-              i++;    // increment index of smaller element
-              swap(table[i], table[j]);
-          }
-      }
-      swap(table[i + 1], table[right]);
-      return (i + 1);
-     */
-    
-    
-    
-    
-    
-    
-    /*
-    
-    vector<int> leftArray;
-    vector<int> rightArray;
-    
-    int i;
-    int j;
-    
-    for(i = 0; i < (right - left); i++) {
-        int val = table[left + i];
-        if(val >= table[pivotIndex]) {
-            rightArray.push_back(val);
-        }
-        else {
-            leftArray.push_back(val);
-        }
-    }
-    
-    i = 0;
-    for(j = 0; j < leftArray.size(); j++) {
-        table[left + i] = leftArray.at(j);
-        i++;
-    }
-    table[left + i] = table[pivotIndex];
-    i++;
-    for(j = 0; j < rightArray.size(); j++) {
-        table[left + i] = rightArray.at(j);
-        i++;
-    }
-    
-    
-    return left + ((int)leftArray.size());
-    */
-    
-    
-    
     swap(table[pivotIndex], table[left]);
     
     int up = left + 1;
-    int down = right - 1;
+    int down = right;
     
     do {
-        while((up != right - 1) && !(left < up)) {
-            ++up;
+        while((table[up] <= table[left]) && (up < right)) {
+            up++;
         }
-        while(left < down) {
-            --down;
+        while(table[down] > table[left] && (down > left)) {
+            down--;
         }
         
         if(up < down) {
@@ -268,9 +207,9 @@ bool QS::createArray(int capacity) {
         return false;
     }
     else {
-        if(table != 0 && table != NULL) {
+        if(table != 0) {
             delete [] table;
-            table = 0;
+            table = NULL;
         }
         table = new int[capacity];
         tableSize = capacity;
@@ -295,8 +234,9 @@ void QS::quicksort(int first, int last) {
 */
 void QS::clear() {
     delete [] table;
-    table = 0;
+    table = NULL;
     arrayCounter = 0;
+    tableSize = 0;
 };
     
 
